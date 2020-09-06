@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const {signup, signin, requireSignin} = require('../controller/auth');
-
-router.post('/signup', signup);
+const { validateRequest, isRequestValidated } = require('../validators/auth')
+//using expressvalidation as middleware
+router.post('/signup',validateRequest, isRequestValidated, signup);
 
 router.post('/signin', signin);
 
