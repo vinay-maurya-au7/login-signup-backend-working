@@ -6,7 +6,7 @@ const {validationResult } = require('express-validator');
 exports.signup = (req, res) => {
 
     const errors = validationResult(req);
-  // return res.status(400).json({errors: errors.array(),message:errors })
+   return res.status(400).json({errors: errors.array(),message:errors })
 
     User.findOne({email: req.body.email })
     .exec((error, user) => {
@@ -85,16 +85,3 @@ exports.signin = (req, res) => {
                     }
                 })
 }
-
-exports.requireSignin = (req, res, next) =>{
-    //use in postman ==> Headers -> add new key/value --> Authorization --> Bearer paste tokem
-    const token = req.headers.authorization.split(" ")[1];
-    console.log('looking for token',token)
-    const user = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = user;
-    next();
-}
-
-
-
-

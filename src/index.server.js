@@ -10,17 +10,7 @@ const adminRoutes = require('./routes/admin/auth');
 env.config();
 
 //mongoDB
-//mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASSWORD}@cluster0.lxhhh.mongodb.net/${process.env.MONGO_DB_NAME}?retryWrites=true&w=majority`, {
-    // mongoose.connect(`mongodb+srv://ecommerce:ecommerce123@cluster0.lxhhh.mongodb.net/ecommerce?retryWrites=true&w=majority`, {
-
-    //                 useNewUrlParser:true, 
-    //                 useUnifiedTopology:true,
-    //                 useCreateIndex:true
-    //             })
-    //             .then(() =>{
-    //                 console.log('----Data has been connected---');
-    //             })
-                    
+                
     mongoose.connect('mongodb+srv://ecom123:ecommerce21@cluster0.w5oua.mongodb.net/Ecommerce?retryWrites=true&w=majority', {useNewUrlParser:true, 
                     useUnifiedTopology:true,
                     useCreateIndex:true
