@@ -6,7 +6,7 @@ const {validationResult } = require('express-validator');
 exports.signup = (req, res) => {
 
     const errors = validationResult(req);
-    return res.status(400).json({errors: errors.array() })
+  // return res.status(400).json({errors: errors.array(),message:errors })
 
     User.findOne({email: req.body.email })
     .exec((error, user) => {
@@ -45,8 +45,9 @@ exports.signup = (req, res) => {
                                 }
 
                                 if (error) {
-                                    if (error.name === "SequelizeValidationError")
-                                      return res.status(400).send(`error: ${error.message}`);
+                                    if (error.name === "SequelizeValidationError"){
+                                        return res.status(400).send(`error: ${error.message}`);
+                                    }
                                   }
                               
                             })
@@ -58,8 +59,7 @@ exports.signin = (req, res) => {
     User.findOne({email:req.body.email})
                 .exec((error, user) =>{
                     if(error) {
-                        return res.status(400).json({error}).send(`error: ${error.message}`);
-                        
+                        return res.status(400).json({error}).send(`error: ${error.message}`);                        
                     }
                     if(user){
                     

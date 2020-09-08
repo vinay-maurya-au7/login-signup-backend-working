@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const {signup, signin, requireSignin} = require('../../controller/admin/auth');
+const { validateSignupRequest, validateSigninRequest, isRequestValidated} = require('../../validators/auth');
 
-router.post('/admin/signup', signup);
+router.post('/admin/signup', validateSignupRequest, isRequestValidated, signup);
 
-router.post('/admin/signin', signin);
+router.post('/admin/signin',validateSigninRequest, isRequestValidated, signin);
 
-router.post('/profile', requireSignin, (req, res) =>{
-    res.status(400).send({message: "hiii"})
+router.post('/admin/profile', requireSignin, (req, res) =>{
+    res.status(400).send({message: "hiii, You are admin"})
 })
 
 module.exports = router;
